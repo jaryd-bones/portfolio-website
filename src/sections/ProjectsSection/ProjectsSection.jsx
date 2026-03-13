@@ -1,5 +1,5 @@
 const ProjectsPage = () => (
-  <p>Projects Page</p>
+  <p className="text-white">Projects Section</p>
 )
 
 export default ProjectsPage
