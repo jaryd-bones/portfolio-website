@@ -4,6 +4,7 @@ import {
   LinkedinLogoIcon,
   EnvelopeIcon,
   ArrowDownIcon,
+  DownloadSimpleIcon,
 } from "@phosphor-icons/react"
 
 const IconLink = ({ href, ariaLabel, tooltipText, children }) => (
@@ -62,6 +63,21 @@ const HomeSection = () => {
           I'm a full stack developer and software implementation consultant who
           enjoys building practical applications that solves real world problems.
         </p>
+
+        <div
+          className={`mt-8 flex justify-center transition-all duration-700 delay-300 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          }`}
+        >
+          <a
+            href="/jaryd_bones_resume.pdf"
+            download="Jaryd_Bones_Resume.pdf"
+            className="inline-flex items-center gap-2 rounded-full border-1 border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/20"
+          >
+            <DownloadSimpleIcon size={18} weight="bold" />
+            Download Resume
+          </a>
+        </div>
 
         <div
           className={`mt-5 flex justify-center gap-7 transition-all duration-700 delay-[400ms] ${
