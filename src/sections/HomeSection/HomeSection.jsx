@@ -44,10 +44,10 @@ const HomeSection = () => {
   }, [])
 
   return (
-    <div className="relative flex min-h-screen justify-center px-6 pt-40">
+    <div className="relative flex min-h-screen justify-center px-6 pt-40 text-white">
       <div className="max-w-2xl">
         <h1
-          className={`text-center text-8xl font-bold text-white transition-all duration-700 ${
+          className={`text-center text-8xl font-bold transition-all duration-700 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >
@@ -55,7 +55,7 @@ const HomeSection = () => {
         </h1>
 
         <p
-          className={`mt-6 text-left text-lg leading-relaxed text-white transition-all duration-700 delay-200 ${
+          className={`mt-6 text-left text-lg leading-relaxed transition-all duration-700 delay-200 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >

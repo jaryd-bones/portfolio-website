@@ -1,5 +1,53 @@
-const ProjectsPage = () => (
-  <p className="text-white">Projects Section</p>
-)
+import { useState } from "react"
+import ProjectCard from "./ProjectCard"
+import ProjectModal from "./ProjectModal"
+import projects from "../../data/projects"
 
-export default ProjectsPage
+const ProjectsSection = () => {
+  const [selectedProject, setSelectedProject] = useState(null)
+
+  const openProjectModal = (project) => {
+    setSelectedProject(project)
+    document.body.style.overflow = "hidden"
+  }
+
+  const closeProjectModal = () => {
+    setSelectedProject(null)
+    document.body.style.overflow = "auto"
+  }
+
+  return (
+    <section className="px-6">
+      <div className="mx-auto max-w-6xl">
+        <h2 className="text-center text-4xl font-semibold text-white md:text-5xl">
+          Some Projects I've Built...
+        </h2>
+
+        <div className="mt-9 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.name}
+              name={project.name}
+              img={project.img}
+              shortDescription={project.shortDescription}
+              onClick={() => openProjectModal(project)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {selectedProject && (
+        <ProjectModal
+          name={selectedProject.name}
+          img={selectedProject.img}
+          fullDescription={selectedProject.fullDescription}
+          technologies={selectedProject.technologies}
+          link={selectedProject.link}
+          onClose={closeProjectModal}
+        />
+      )}
+    </section>
+  )
+}
+
+export default ProjectsSection
