@@ -1,3 +1,5 @@
+import TechBadge from "../../components/TechBadge"
+
 const CertificationCard = ({
   provider,
   title,
@@ -33,12 +35,11 @@ const CertificationCard = ({
 
       <div className="mt-4 flex flex-1 flex-wrap content-start gap-3">
         {skills.map((skill) => (
-          <span
+          <TechBadge
             key={skill}
-            className="rounded-full border border-white/30 px-3 py-1 text-sm text-gray-200"
-          >
-            {skill}
-          </span>
+            technology={skill}
+            className="border-white/30"
+          />
         ))}
       </div>
     </div>

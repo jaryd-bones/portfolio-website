@@ -5,3 +5,37 @@ body {
   background-color: #000;
   margin: 0;
 }
+
+:root {
+  --app-scrollbar-track: #0f0f0f;
+  --app-scrollbar-thumb: #2f2f2f;
+  --app-scrollbar-thumb-hover: #444444;
+}
+
+html,
+.project-modal-scrollbar {
+  scrollbar-width: auto;
+  scrollbar-color: var(--app-scrollbar-thumb) var(--app-scrollbar-track);
+}
+
+html::-webkit-scrollbar,
+.project-modal-scrollbar::-webkit-scrollbar {
+  width: 16px;
+}
+
+html::-webkit-scrollbar-track,
+.project-modal-scrollbar::-webkit-scrollbar-track {
+  background: var(--app-scrollbar-track);
+}
+
+html::-webkit-scrollbar-thumb,
+.project-modal-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--app-scrollbar-thumb);
+  border-radius: 9999px;
+  border: 2px solid var(--app-scrollbar-track);
+}
+
+html::-webkit-scrollbar-thumb:hover,
+.project-modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--app-scrollbar-thumb-hover);
+}
