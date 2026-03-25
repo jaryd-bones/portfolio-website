@@ -1,4 +1,4 @@
-import crmImg from "../assets/images/crm_test.jpg"
+import crmImg from "../assets/project_screenshots/crm_test.jpg"
 
 const projects = [
   {

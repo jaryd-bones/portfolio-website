@@ -28,7 +28,9 @@ const HomeSection = () => {
   const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
-    setIsVisible(true)
+    const animationFrame = window.requestAnimationFrame(() => {
+      setIsVisible(true)
+    })
 
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -41,7 +43,10 @@ const HomeSection = () => {
     window.addEventListener("scroll", handleScroll)
     handleScroll()
 
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      window.cancelAnimationFrame(animationFrame)
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [])
 
   return (

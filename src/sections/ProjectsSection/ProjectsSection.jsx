@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ProjectCard from "./ProjectCard"
 import ProjectModal from "./ProjectModal"
 import projects from "../../data/projects"
@@ -8,13 +8,19 @@ const ProjectsSection = () => {
 
   const openProjectModal = (project) => {
     setSelectedProject(project)
-    document.body.style.overflow = "hidden"
   }
 
   const closeProjectModal = () => {
     setSelectedProject(null)
-    document.body.style.overflow = "auto"
   }
+
+  useEffect(() => {
+    document.body.style.overflow = selectedProject ? "hidden" : "auto"
+
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [selectedProject])
 
   return (
     <section className="px-6">
