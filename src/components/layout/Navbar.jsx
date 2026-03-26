@@ -9,10 +9,10 @@ const NavItem = ({ name, to }) => (
 
 const Navbar = () => {
   return (
-    <header className="border-b border-gray-500">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-10 py-4">
+    <header className="sticky top-0 z-40 border-b border-gray-500 bg-black/80 backdrop-blur-md">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-10">
         <div className="flex w-full items-center gap-6">
-          <ul className="flex w-full items-center justify-center gap-[clamp(1rem,30vw,20rem)] text-base font-medium text-gray-700">
+          <ul className="mx-auto flex w-full max-w-xs items-center justify-center gap-[clamp(0.75rem,14vw,2.75rem)] text-base font-medium text-gray-700 sm:max-w-lg sm:justify-between sm:gap-0 md:max-w-2xl lg:max-w-4xl">
             <li>
               <NavItem name="Home" to="#home" />
             </li>
