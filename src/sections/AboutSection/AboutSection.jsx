@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { certifications, education, employment } from "../../data/about"
+import SectionDivider from "../../components/SectionDivider"
 import CertificationCard from "./CertificationCard"
 import EmploymentCard from "./EmploymentCard"
 
@@ -54,9 +55,16 @@ const RevealBlock = ({
 const AboutSection = () => (
   <section className="px-6 py-24 text-white">
     <div className="mx-auto max-w-6xl">
+      <RevealBlock
+        className="mb-16"
+        hiddenClass="scale-x-90 opacity-0"
+        visibleClass="scale-x-100 opacity-100"
+      >
+        <SectionDivider label="About" />
+      </RevealBlock>
+
       <RevealBlock className="max-w-4xl" hiddenClass="-translate-x-12 opacity-0">
-        <p className="text-sm uppercase tracking-[0.3em] text-gray-400">About</p>
-        <h2 className="mt-4 text-4xl font-semibold md:text-5xl">
+        <h2 className="text-4xl font-semibold md:text-5xl">
           A little more about my background
         </h2>
         <p className="mt-6 text-lg leading-relaxed text-gray-300">
