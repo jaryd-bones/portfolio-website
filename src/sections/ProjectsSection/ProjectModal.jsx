@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { XIcon, ArrowRightIcon } from "@phosphor-icons/react"
+import { XIcon, ArrowRightIcon, GithubLogoIcon } from "@phosphor-icons/react"
 import TechBadge from "../../components/TechBadge"
 
 const ProjectModal = ({
@@ -8,6 +8,7 @@ const ProjectModal = ({
   fullDescription,
   technologies = [],
   link,
+  githubLink,
   onClose,
 }) => {
   const scrollContainerRef = useRef(null)
@@ -37,7 +38,7 @@ const ProjectModal = ({
       resizeObserver.disconnect()
       window.removeEventListener("resize", updateOverflowState)
     }
-  }, [name, img, fullDescription, technologies, link])
+  }, [name, img, fullDescription, technologies, link, githubLink])
 
   return (
     <div
@@ -92,15 +93,30 @@ const ProjectModal = ({
                 </div>
               )}
 
-              {link && (
-                <a
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-gray-300 transition hover:text-white"
-                >
-                  View Project <ArrowRightIcon />
-                </a>
+              {(link || githubLink) && (
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  {link && (
+                    <a
+                      href={link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-gray-300 transition hover:text-white"
+                    >
+                      View Project <ArrowRightIcon />
+                    </a>
+                  )}
+
+                  {githubLink && (
+                    <a
+                      href={githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-gray-300 transition hover:text-white"
+                    >
+                      GitHub <GithubLogoIcon />
+                    </a>
+                  )}
+                </div>
               )}
             </div>
           </div>
