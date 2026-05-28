@@ -23,7 +23,7 @@ const createProjectImageSet = (slug, variant, widths) => {
 
 const projects = [
   {
-    name: "Legacy Mortgage",
+    name: "Legacy Real Estate Services Inc",
     cardImage: createProjectImageSet("legacy-mortgage", "card", [
       480, 768, 960,
     ]),
