@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import {
   GithubLogoIcon,
   LinkedinLogoIcon,
@@ -23,9 +23,97 @@ const IconLink = ({ href, ariaLabel, tooltipText, children }) => (
   </a>
 )
 
+const MIN_CONTENT_TOP_SPACE = 16
+const MIN_ARROW_GAP = 12
+const ARROW_BOTTOM_SPACE = 8
+
 const HomeSection = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
+  const [homeLayout, setHomeLayout] = useState({
+    shouldFillScreen: false,
+    minHeight: 0,
+    contentTopSpace: MIN_CONTENT_TOP_SPACE,
+    arrowGap: MIN_ARROW_GAP,
+  })
+  const homeRef = useRef(null)
+  const contentRef = useRef(null)
+  const arrowIconRef = useRef(null)
+
+  useLayoutEffect(() => {
+    const homeNode = homeRef.current
+    const contentNode = contentRef.current
+    const arrowIconNode = arrowIconRef.current
+
+    if (!homeNode || !contentNode || !arrowIconNode) return
+
+    const measureHome = () => {
+      const headerHeight =
+        document.querySelector("header")?.getBoundingClientRect().height ?? 0
+      const availableHeight = Math.max(window.innerHeight - headerHeight, 0)
+      const contentHeight = contentNode.getBoundingClientRect().height
+      const arrowHeight = arrowIconNode.getBoundingClientRect().height
+      const requiredHeight =
+        MIN_CONTENT_TOP_SPACE +
+        contentHeight +
+        MIN_ARROW_GAP +
+        arrowHeight +
+        ARROW_BOTTOM_SPACE
+      const shouldFillScreen = availableHeight >= requiredHeight
+      let contentTopSpace = MIN_CONTENT_TOP_SPACE
+      let arrowGap = MIN_ARROW_GAP
+
+      if (shouldFillScreen) {
+        const centeredTopSpace = (availableHeight - contentHeight) / 2
+        const centeredArrowGap =
+          centeredTopSpace - arrowHeight - ARROW_BOTTOM_SPACE
+
+        if (centeredArrowGap >= MIN_ARROW_GAP) {
+          contentTopSpace = centeredTopSpace
+          arrowGap = centeredArrowGap
+        } else {
+          contentTopSpace =
+            availableHeight -
+            contentHeight -
+            MIN_ARROW_GAP -
+            arrowHeight -
+            ARROW_BOTTOM_SPACE
+        }
+      }
+
+      const nextLayout = {
+        shouldFillScreen,
+        minHeight: Math.round(availableHeight),
+        contentTopSpace: Math.round(Math.max(contentTopSpace, 0)),
+        arrowGap: Math.round(Math.max(arrowGap, MIN_ARROW_GAP)),
+      }
+
+      setHomeLayout((currentLayout) =>
+        currentLayout.shouldFillScreen === nextLayout.shouldFillScreen &&
+        currentLayout.minHeight === nextLayout.minHeight &&
+        currentLayout.contentTopSpace === nextLayout.contentTopSpace &&
+        currentLayout.arrowGap === nextLayout.arrowGap
+          ? currentLayout
+          : nextLayout,
+      )
+    }
+
+    measureHome()
+    window.addEventListener("resize", measureHome)
+
+    let resizeObserver
+    if ("ResizeObserver" in window) {
+      resizeObserver = new ResizeObserver(measureHome)
+      resizeObserver.observe(homeNode)
+      resizeObserver.observe(contentNode)
+      resizeObserver.observe(arrowIconNode)
+    }
+
+    return () => {
+      window.removeEventListener("resize", measureHome)
+      resizeObserver?.disconnect()
+    }
+  }, [])
 
   useEffect(() => {
     const animationFrame = window.requestAnimationFrame(() => {
@@ -50,8 +138,20 @@ const HomeSection = () => {
   }, [])
 
   return (
-    <div className="relative flex min-h-screen justify-center px-6 pt-40 text-white">
-      <div className="w-full max-w-2xl">
+    <div
+      ref={homeRef}
+      className="relative flex flex-col items-center px-6 text-white"
+      style={
+        homeLayout.shouldFillScreen
+          ? { minHeight: `${homeLayout.minHeight}px` }
+          : undefined
+      }
+    >
+      <div
+        ref={contentRef}
+        className="w-full max-w-2xl"
+        style={{ marginTop: `${homeLayout.contentTopSpace}px` }}
+      >
         <h1
           className={`mx-auto block w-fit max-w-full text-center whitespace-nowrap text-[clamp(2.35rem,13vw,6rem)] font-bold transition-all duration-700 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
@@ -119,13 +219,19 @@ const HomeSection = () => {
         </div>
       </div>
 
-<div
-  className={`fixed bottom-1 left-1/2 -translate-x-1/2 text-gray-400 transition-opacity duration-500 ${
-    hasScrolled ? "pointer-events-none opacity-0" : "opacity-100"
-  }`}
->
-  <ArrowDownIcon size={30} className="animate-bounce" />
-</div>
+      <div
+        className={`flex justify-center text-gray-400 transition-opacity duration-500 ${
+          hasScrolled ? "pointer-events-none opacity-0" : "opacity-100"
+        }`}
+        style={{
+          marginTop: `${homeLayout.arrowGap}px`,
+          paddingBottom: `${ARROW_BOTTOM_SPACE}px`,
+        }}
+      >
+        <span ref={arrowIconRef} className="inline-flex">
+          <ArrowDownIcon size={30} className="animate-bounce" />
+        </span>
+      </div>
     </div>
   )
 }

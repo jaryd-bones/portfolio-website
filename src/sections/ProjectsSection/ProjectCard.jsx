@@ -1,6 +1,13 @@
+import ResponsiveImage from "../../components/ResponsiveImage"
 import TechBadge from "../../components/TechBadge"
 
-const ProjectCard = ({ name, img, shortDescription, technologies = [], onClick }) => (
+const ProjectCard = ({
+  name,
+  image,
+  shortDescription,
+  technologies = [],
+  onClick,
+}) => (
   <button
     type="button"
     onClick={onClick}
@@ -8,10 +15,12 @@ const ProjectCard = ({ name, img, shortDescription, technologies = [], onClick }
   >
     <div className="bg-black/30 px-4 pt-4 pb-2">
       <div className="overflow-hidden rounded-2xl border border-white/10">
-        <img
-          src={img}
+        <ResponsiveImage
+          image={image}
           alt={name}
-          className="aspect-video w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+          sizes="(min-width: 768px) 432px, calc(100vw - 3rem)"
+          pictureClassName="block"
+          className="h-52 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-56"
         />
       </div>
     </div>

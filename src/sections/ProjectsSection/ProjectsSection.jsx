@@ -86,7 +86,7 @@ const ProjectsSection = () => {
   }, [selectedProject])
 
   return (
-    <section className="px-6 pt-24 pb-15 text-white">
+    <section className="px-6 pt-24 text-white">
       <div className="mx-auto max-w-6xl">
         <RevealBlock
           className="mb-16"
@@ -102,7 +102,7 @@ const ProjectsSection = () => {
           </h2>
         </RevealBlock>
 
-        <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mx-auto mt-6 grid max-w-md gap-8 md:mx-0 md:max-w-4xl md:grid-cols-2">
           {projects.map((project, index) => (
             <RevealBlock
               key={project.name}
@@ -120,7 +120,7 @@ const ProjectsSection = () => {
             >
               <ProjectCard
                 name={project.name}
-                img={project.img}
+                image={project.cardImage}
                 shortDescription={project.shortDescription}
                 technologies={project.technologies}
                 onClick={() => openProjectModal(project)}
@@ -133,7 +133,7 @@ const ProjectsSection = () => {
       {selectedProject && (
         <ProjectModal
           name={selectedProject.name}
-          img={selectedProject.img}
+          image={selectedProject.modalImage}
           fullDescription={selectedProject.fullDescription}
           technologies={selectedProject.technologies}
           link={selectedProject.link}

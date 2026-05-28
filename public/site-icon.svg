@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Jaryd Bones">
+  <rect width="64" height="64" rx="14" fill="#050505"/>
+  <path
+    d="M28 20h9c6 0 10 3 10 8s-4 8-10 8h-9M28 36h10c7 0 11 4 11 9s-4 9-11 9H28"
+    fill="none"
+    stroke="#34d399"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M18 15h14M28 15v25c0 8-5 13-13 10"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

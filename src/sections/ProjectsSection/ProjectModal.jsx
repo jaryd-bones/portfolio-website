@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 import { XIcon, ArrowRightIcon, GithubLogoIcon } from "@phosphor-icons/react"
+import ResponsiveImage from "../../components/ResponsiveImage"
 import TechBadge from "../../components/TechBadge"
 
 const ProjectModal = ({
   name,
-  img,
+  image,
   fullDescription,
   technologies = [],
   link,
@@ -38,7 +39,7 @@ const ProjectModal = ({
       resizeObserver.disconnect()
       window.removeEventListener("resize", updateOverflowState)
     }
-  }, [name, img, fullDescription, technologies, link, githubLink])
+  }, [name, image, fullDescription, technologies, link, githubLink])
 
   return (
     <div
@@ -56,12 +57,15 @@ const ProjectModal = ({
             ref={scrollContainerRef}
             className="project-modal-scrollbar max-h-[90vh] overflow-y-auto"
           >
-            <div className="border-b border-white/10 bg-black/30 p-6">
+            <div className="border-b border-white/10 bg-black/30 px-6 py-8">
               <div className="mx-auto flex max-w-2xl items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/40">
-                <img
-                  src={img}
+                <ResponsiveImage
+                  image={image}
                   alt={name}
+                  sizes="(min-width: 768px) 672px, calc(100vw - 5rem)"
+                  pictureClassName="flex max-w-full justify-center"
                   className="max-h-[420px] w-auto max-w-full object-contain"
+                  loading="eager"
                 />
               </div>
             </div>
@@ -71,9 +75,35 @@ const ProjectModal = ({
                 {name}
               </h3>
 
-              <p className="mt-4 text-sm leading-relaxed text-gray-300 md:text-base">
+              <p className="mt-4 text-justify text-sm leading-relaxed text-gray-300 md:text-base">
                 {fullDescription}
               </p>
+
+              {(link || githubLink) && (
+                <div className="mt-6 flex flex-wrap items-center justify-end gap-4">
+                  {link && (
+                    <a
+                      href={link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 transition hover:text-emerald-300"
+                    >
+                      View Project <ArrowRightIcon />
+                    </a>
+                  )}
+
+                  {githubLink && (
+                    <a
+                      href={githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 transition hover:text-emerald-300"
+                    >
+                      GitHub <GithubLogoIcon />
+                    </a>
+                  )}
+                </div>
+              )}
 
               {technologies.length > 0 && (
                 <div className="mt-6">
@@ -90,32 +120,6 @@ const ProjectModal = ({
                       />
                     ))}
                   </div>
-                </div>
-              )}
-
-              {(link || githubLink) && (
-                <div className="mt-8 flex flex-wrap items-center gap-4">
-                  {link && (
-                    <a
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-gray-300 transition hover:text-white"
-                    >
-                      View Project <ArrowRightIcon />
-                    </a>
-                  )}
-
-                  {githubLink && (
-                    <a
-                      href={githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-gray-300 transition hover:text-white"
-                    >
-                      GitHub <GithubLogoIcon />
-                    </a>
-                  )}
                 </div>
               )}
             </div>

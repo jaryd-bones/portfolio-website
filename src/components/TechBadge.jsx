@@ -76,13 +76,14 @@ const TechBadge = ({ technology, className = "" }) => {
       className={`inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-sm text-gray-200 ${className}`}
     >
       {badge.iconClass ? (
-        <i aria-hidden="true" className={`${badge.iconClass} text-base leading-none`} />
+        <i
+          aria-hidden="true"
+          className={`${badge.iconClass} text-base leading-none`}
+        />
       ) : null}
       <span>{badge.label}</span>
     </span>
   )
 }
-
-export { techBadgeMap }
 
 export default TechBadge
