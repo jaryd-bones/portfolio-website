@@ -161,16 +161,16 @@ const HomeSection = () => {
         </h1>
 
         <p
-          className={`mt-6 text-center text-lg leading-relaxed transition-all duration-700 delay-200 sm:text-left ${
+          className={`mt-2 text-center text-lg leading-relaxed transition-all duration-700 md:text-left delay-200 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >
           I'm a full stack developer and software implementation consultant who
-          enjoys building practical applications that solves real world problems.
+          enjoys building practical applications that solve real world problems.
         </p>
 
         <div
-          className={`mt-8 flex justify-center transition-all duration-700 delay-300 ${
+          className={`mt-9 flex justify-center transition-all duration-700 delay-300 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >

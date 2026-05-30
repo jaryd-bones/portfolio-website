@@ -6,7 +6,11 @@ const employment = [
     company: "Legacy Real Estate Services Inc",
     location: "Mission Viejo, CA",
     period: "Feb 2025 - Oct 2025",
-    body: "Worked as the sole contract developer on a production reverse mortgage platform for Legacy Real Estate Services, building and maintaining both the customer-facing website and the internal admin system the business used to manage operations. Supported key business workflows including lead intake, appointment scheduling, blog and content management, downloadable resource requests, and analytics visibility, while continuing to ship improvements and fixes throughout the engagement."
+    body: [
+      "Sole developer responsible for designing, building, and maintaining their main mortgage and dedicated reverse mortgage websites",
+      "Created public facing mortgage education pages, downloadable informational resources, and custom inquiry forms",
+      "Built internal admin tools for managing form submissions, appointment scheduling, blog publishing, analytics, and lead activity tracking",
+    ],
   },
 ];
 

@@ -75,7 +75,7 @@ const AboutSection = () => (
           Through my development and consultation work, I&apos;ve collaborated closely
           with businesses to turn their daily needs into practical
           software. I like the balance of problem-solving, working with others, and creativity
-          that comes with web development, and I&apos;m always motivated by the chance to build
+          that comes with software development, and I&apos;m always motivated by the chance to build
           something useful.
         </p>
       </RevealBlock>
@@ -101,8 +101,10 @@ const AboutSection = () => (
         </div>
       </RevealBlock>
 
-      <RevealBlock className="mt-16" hiddenClass="translate-x-10 opacity-0">
-        <h3 className="text-3xl font-semibold">Certifications</h3>
+      <div className="mt-16">
+        <RevealBlock hiddenClass="translate-x-10 opacity-0">
+          <h3 className="text-3xl font-semibold">Certifications</h3>
+        </RevealBlock>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           {certifications.map((certification, index) => (
@@ -133,7 +135,7 @@ const AboutSection = () => (
             </RevealBlock>
           ))}
         </div>
-      </RevealBlock>
+      </div>
 
       <RevealBlock className="mt-16" hiddenClass="translate-x-10 opacity-0">
         <h3 className="text-3xl font-semibold">Education</h3>

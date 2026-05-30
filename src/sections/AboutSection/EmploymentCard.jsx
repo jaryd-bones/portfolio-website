@@ -19,7 +19,15 @@ const EmploymentCard = ({
       <p className="text-sm text-gray-300">{period}</p>
     </div>
 
-    <p className="mt-6 leading-relaxed text-gray-200">{body}</p>
+    {Array.isArray(body) ? (
+      <ul className="mt-6 list-disc space-y-3 pl-5 leading-relaxed text-gray-200">
+        {body.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    ) : (
+      <p className="mt-6 leading-relaxed text-gray-200">{body}</p>
+    )}
   </article>
 )
 

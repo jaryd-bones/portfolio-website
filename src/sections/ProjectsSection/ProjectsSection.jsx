@@ -102,11 +102,11 @@ const ProjectsSection = () => {
           </h2>
         </RevealBlock>
 
-        <div className="mx-auto mt-6 grid max-w-md gap-8 md:mx-0 md:max-w-4xl md:grid-cols-2">
+        <div className="mx-auto mt-6 grid w-full max-w-md justify-items-center gap-8 md:mx-0 md:max-w-4xl md:grid-cols-2 md:justify-items-stretch">
           {projects.map((project, index) => (
             <RevealBlock
               key={project.name}
-              className="h-full"
+              className="h-full w-full"
               delayClass={
                 index === 0
                   ? "delay-75"
